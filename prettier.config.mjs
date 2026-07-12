@@ -1,4 +1,4 @@
-export default {
+const prettierConfig = {
   semi: true,
   singleQuote: false,
   trailingComma: "all",
@@ -7,3 +7,5 @@ export default {
   useTabs: false,
   arrowParens: "always",
 };
+
+export default prettierConfig;

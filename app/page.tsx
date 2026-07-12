@@ -8,7 +8,7 @@ export default function Home() {
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-center py-10  lg:px-16 bg-[#F8F7F3] dark:bg-black sm:items-start px-6">
         {/* HERO */}
         <div className="hero flex justify-center items-center w-full">
-          <Image src="/hero.svg" alt="Hero Image" width={450} height={250} />
+          <Image src="/hero.svg" alt="Hero Image" width={450} height={250} loading="eager" />
         </div>
 
         <div className="rsvp flex flex-col items-center justify-center gap-4 w-full mt-10">
