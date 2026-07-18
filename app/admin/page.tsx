@@ -31,6 +31,13 @@ type RegisteredGuestRow = {
   invitedBy: "GROOM" | "BRIDE";
 };
 
+type GuestMessageRow = {
+  id: string;
+  names: string;
+  message: string;
+  createdAt: Date;
+};
+
 function formatDatePtBrSaoPaulo(date: Date) {
   const formatter = new Intl.DateTimeFormat("pt-BR", {
     timeZone: "America/Sao_Paulo",
@@ -73,6 +80,12 @@ export default async function AdminPage() {
     orderBy: [{ invitedBy: "asc" }, { fullName: "asc" }],
   })) as RegisteredGuestRow[];
 
+  const guestMessages = (await prisma.guestMessage.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  })) as GuestMessageRow[];
+
   const guestPairSet = buildConfirmedPairSet(
     guests.map((guest) => ({
       fullName: guest.fullName,
@@ -105,6 +118,12 @@ export default async function AdminPage() {
         dietaryRestrictions: guest.dietaryRestrictions,
         confirmedAt: formatDatePtBrSaoPaulo(new Date(guest.submission.confirmedAt)),
         isRegistered: isPairConfirmed(registeredPairSet, guest.fullName, guest.phone),
+      }))}
+      guestMessages={guestMessages.map((message) => ({
+        id: message.id,
+        names: message.names,
+        message: message.message,
+        createdAt: formatDatePtBrSaoPaulo(new Date(message.createdAt)),
       }))}
     />
   );

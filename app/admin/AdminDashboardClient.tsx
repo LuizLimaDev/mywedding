@@ -25,12 +25,20 @@ type RegisteredRow = {
   confirmed: boolean;
 };
 
+type GuestMessageRow = {
+  id: string;
+  names: string;
+  message: string;
+  createdAt: string;
+};
+
 type Props = {
   weddingDate: string;
   confirmedGuests: number;
   registeredGuestsCount: number;
   guests: GuestRow[];
   registeredGuests: RegisteredRow[];
+  guestMessages: GuestMessageRow[];
 };
 
 type RegisteredDraft = {
@@ -103,6 +111,7 @@ export default function AdminDashboardClient({
   confirmedGuests,
   guests,
   registeredGuests,
+  guestMessages,
 }: Props) {
   const [registeredRows, setRegisteredRows] = useState<RegisteredRow[]>(registeredGuests);
   const [showRegisteredTable, setShowRegisteredTable] = useState(false);
@@ -122,6 +131,7 @@ export default function AdminDashboardClient({
   });
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
+  const [showMessages, setShowMessages] = useState(false);
 
   const emptyRegisteredMessage = useMemo(() => {
     return "Nenhum convidado cadastrado com base nas fotos.";
@@ -365,6 +375,44 @@ export default function AdminDashboardClient({
               <CountdownPanel targetIsoDate={weddingDate} />
             </div>
           </article>
+        </section>
+
+        <section className="rounded-xl border border-foreground/30 bg-white p-4 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="font-cinzel text-lg font-bold uppercase">Mensagens dos convidados</h2>
+              <p className="text-sm text-black/70">Total recebido: {guestMessages.length}</p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowMessages((current) => !current)}
+              className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-white"
+            >
+              {showMessages ? "Ocultar mensagens" : "Ver mensagens"}
+            </button>
+          </div>
+
+          {showMessages ? (
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {guestMessages.length === 0 ? (
+                <p className="text-sm text-black/60">Nenhuma mensagem recebida ate o momento.</p>
+              ) : (
+                guestMessages.map((message) => (
+                  <article
+                    key={message.id}
+                    className="rounded-xl border border-foreground/20 bg-[#F8F7F3] p-4 shadow-sm"
+                  >
+                    <p className="font-cinzel text-sm font-bold uppercase">{message.names}</p>
+                    <p className="mt-1 whitespace-pre-wrap text-sm leading-relaxed">
+                      {message.message}
+                    </p>
+                    <p className="mt-3 text-xs text-black/60">{message.createdAt}</p>
+                  </article>
+                ))
+              )}
+            </div>
+          ) : null}
         </section>
 
         {showRegisteredTable ? (

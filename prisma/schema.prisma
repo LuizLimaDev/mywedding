@@ -40,6 +40,15 @@ model RegisteredGuest {
   createdAt DateTime  @default(now())
 }
 
+model GuestMessage {
+  id        String   @id @default(cuid())
+  names     String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@map("guest-mgs")
+}
+
 enum InvitedBy {
   GROOM
   BRIDE
