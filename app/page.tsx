@@ -199,7 +199,7 @@ export default async function Home() {
 
           <div className="relative mt-2 w-full">
             <Image
-              src="/book.svg"
+              src="/book2.svg"
               alt="Deixe sua mensagem"
               width={0}
               height={0}
