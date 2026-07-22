@@ -95,7 +95,7 @@ export default function GuestMessageForm() {
         <button
           type="submit"
           disabled={isSubmitting || !canSubmit}
-          className="rounded-full bg-foreground px-7 py-2 pt-2.5 text-[0.7rem] font-semibold text-white disabled:opacity-60"
+          className="rounded-full bg-foreground px-7 py-2 pt-2.5 text-[0.7rem] font-semibold text-white disabled:opacity-60 cursor-pointer"
         >
           {isSubmitting ? "Enviando..." : "Enviar mensagem"}
         </button>

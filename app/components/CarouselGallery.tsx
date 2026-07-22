@@ -39,7 +39,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
             type="button"
             aria-label="Foto anterior"
             onClick={() => scrollByAmount(-SCROLL_STEP)}
-            className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-foreground text-white shadow-md transition hover:bg-black"
+            className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-foreground text-white shadow-md transition hover:bg-black cursor-pointer"
           >
             <Image
               src="/arrow.svg"
@@ -81,7 +81,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
             type="button"
             aria-label="Proxima foto"
             onClick={() => scrollByAmount(SCROLL_STEP)}
-            className="absolute right-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-foreground text-white shadow-md transition hover:bg-black"
+            className="absolute right-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-foreground text-white shadow-md transition hover:bg-black cursor-pointer"
           >
             <Image src="/arrow.svg" alt="Seta para direita" width={16} height={16} />
           </button>
@@ -95,7 +95,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
         >
           <button
             type="button"
-            className="absolute right-4 top-4 rounded-full border border-white/70 px-3 py-1 text-sm text-white"
+            className="absolute right-4 top-4 rounded-full border border-white/70 px-3 py-1 text-sm text-white z-50 cursor-pointer"
             onClick={() => setModalImage(null)}
           >
             Fechar

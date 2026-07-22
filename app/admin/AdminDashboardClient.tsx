@@ -343,7 +343,7 @@ export default function AdminDashboardClient({
     <main className="min-h-screen bg-[#F8F7F3] px-4 py-6 md:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
         <header className="flex flex-wrap items-center justify-between gap-3">
-          <h1 className="font-cinzel text-2xl font-bold uppercase">Painel administrativo</h1>
+          <h1 className="font-cinzel text-2xl font-bold uppercase">Tiffany & Luiz 🤵🏿👰🏿💍</h1>
           <form action="/api/admin/logout" method="post">
             <button className="rounded-full border border-foreground px-4 py-2 text-sm font-semibold">
               Sair

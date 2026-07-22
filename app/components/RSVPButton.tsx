@@ -90,7 +90,7 @@ export default function RSVPButton() {
   return (
     <>
       <button
-        className="border border-foreground rounded-full bg-foreground text-white px-4 py-2 mt-4 font-bold text-sm"
+        className="border border-foreground rounded-full bg-foreground text-white px-4 py-2 mt-4 font-bold text-sm cursor-pointer"
         onClick={() => {
           resetForm();
           setIsOpen(true);
@@ -106,7 +106,7 @@ export default function RSVPButton() {
               <h2 className="font-cinzel text-xl font-bold uppercase">Confirmar presenca</h2>
               <button
                 type="button"
-                className="rounded-full border border-foreground px-3 py-1 text-sm"
+                className="rounded-full border border-foreground px-3 py-1 text-sm cursor-pointer"
                 onClick={() => setIsOpen(false)}
               >
                 Fechar
@@ -202,7 +202,7 @@ export default function RSVPButton() {
                 <button
                   type="button"
                   onClick={() => setGuests((prev) => [...prev, makeEmptyGuest()])}
-                  className="rounded-full border border-foreground px-4 py-2 text-sm font-semibold"
+                  className="rounded-full border border-foreground px-4 py-2 text-sm font-semibold cursor-pointer"
                 >
                   + Adicionar
                 </button>
@@ -210,7 +210,7 @@ export default function RSVPButton() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !canSubmit}
-                  className="rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-white disabled:opacity-60"
+                  className="rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-white disabled:opacity-60 cursor-pointer"
                 >
                   {isSubmitting ? "Enviando..." : "Enviar RSVP"}
                 </button>

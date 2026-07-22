@@ -42,59 +42,11 @@ export default async function Home() {
 
           <RSVPButton />
 
-          <span className="text-[12px]"> *Até 16 de Setembro</span>
-        </div>
+          <span className="text-[12px]"> *Até 27 de Setembro</span>
 
-        {/* Wedding Details */}
-        <div className="wedding-details flex justify-center items-center gap-4 w-full mt-28 relative">
-          <Image
-            src="/umbrella.png"
-            alt="umbrella"
-            width={450}
-            height={250}
-            className="w-1/2 h-auto absolute -top-44 -left-24"
-          />
-
-          <Image
-            src="/chair.svg"
-            alt="Chair Image"
-            width={450}
-            height={250}
-            className="w-1/2 h-auto"
-          />
-
-          <div className="w-1/2 h-full flex flex-col items-center justify-start gap-4">
-            <h1 className="font-dancing text-[1.70rem] text-center"> Dia do casamento </h1>
-
-            <h2 className="uppercase font-cinzel font-bold text-[.8rem] text-center">
-              17 de outubro de 2026, Bauru-SP
-            </h2>
-
-            <div>
-              <p className="font-cinzel text-center text-[.8rem] uppercase leading-tight">
-                Espaço Aveiro, Bauru - SP
-              </p>
-              <p className="font-cinzel text-center text-[.8rem] uppercase leading-tight">
-                às <strong>16h30</strong>
-              </p>
-            </div>
-
-            <Link
-              href="https://www.google.com/maps/place/Espaço+Aveiro/data=!4m2!3m1!1s0x0:0x3806ba82f88fb170?sa=X&ved=1t:2428&ictx=111"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 h-10 border border-foreground rounded-full px-2 py-4"
-            >
-              <Image
-                src="/location-icon.svg"
-                alt="Location Icon"
-                width={40}
-                height={40}
-                className="w-8 h-8"
-              />
-              <span>Localização</span>
-            </Link>
-          </div>
+          <button className="font-cinzel text-[12px] cursor-pointer underline">
+            Dress code (trajes)
+          </button>
         </div>
 
         {/* Party Info */}
@@ -150,7 +102,7 @@ export default async function Home() {
             <div className="container-text">
               <h1 className="font-dancing text-[1.70rem] text-center"> Nossa história </h1>
 
-              <p className="min-w-[35%] max-h-50 overflow-scroll text-[12px]">
+              <p className="min-w-[35%] max-h-50 overflow-y-auto overflow-x-hidden text-[12px]">
                 {" "}
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni quaerat harum sint
                 quam dolorum necessitatibus deserunt, perferendis dicta exercitationem dolorem hic
@@ -177,13 +129,53 @@ export default async function Home() {
           <CarouselGallery images={carouselImages} />
         </div>
 
+        {/* Wedding Details */}
+        <div className="wedding-details flex justify-center items-center gap-4 w-full mt-28 relative">
+          <Image
+            src="/chair.svg"
+            alt="Chair Image"
+            width={450}
+            height={250}
+            className="w-1/2 h-auto"
+          />
+
+          <div className="w-1/2 h-full flex flex-col items-center justify-start gap-4">
+            <h1 className="font-dancing text-[1.70rem] text-center"> Dia do casamento </h1>
+
+            <h2 className="uppercase font-cinzel font-bold text-[.8rem] text-center">
+              17 de outubro de 2026, Bauru-SP
+            </h2>
+
+            <div>
+              <p className="font-cinzel text-center text-[.8rem] uppercase leading-tight">
+                Espaço Aveiro, Bauru - SP
+              </p>
+              <p className="font-cinzel text-center text-[.8rem] uppercase leading-tight">
+                às <strong>16h30</strong>
+              </p>
+            </div>
+
+            <Link
+              href="https://www.google.com/maps/place/Espaço+Aveiro/data=!4m2!3m1!1s0x0:0x3806ba82f88fb170?sa=X&ved=1t:2428&ictx=111"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 h-10 border border-foreground rounded-full px-2 py-4"
+            >
+              <Image
+                src="/location-icon.svg"
+                alt="Location Icon"
+                width={40}
+                height={40}
+                className="w-8 h-8"
+              />
+              <span>Localização</span>
+            </Link>
+          </div>
+        </div>
+
         {/* Local */}
         <div className="local flex flex-col justify-center items-center gap-4 w-full mt-16">
-          <h1 className="font-dancing text-[1.70rem] text-center"> Espaço Aveiro </h1>
-
-          <p className=" text-center  font-cinzel">
-            Estrada 6 número 1-130 Chácaras Bauruenses Bauru - SP
-          </p>
+          <h1 className="font-dancing text-[1.70rem] text-center"> Local </h1>
 
           <Image
             src="/aveiro.svg"
@@ -194,7 +186,17 @@ export default async function Home() {
           />
         </div>
 
-        <div className="left-your-msg w-full mt-16">
+        <div className="rsvp relative flex flex-col items-center justify-center w-full mt-10">
+          <RSVPButton />
+
+          <span className="text-[12px] mt-2"> *Até 27 de Setembro</span>
+
+          <button className="font-cinzel text-[12px] cursor-pointer underline mt-4">
+            Dress code (trajes)
+          </button>
+        </div>
+
+        <div className="left-your-msg w-full mt-20">
           <h1 className="font-dancing text-[1.70rem] text-center"> Deixe sua mensagem </h1>
 
           <div className="relative mt-2 w-full">
