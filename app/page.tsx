@@ -3,7 +3,9 @@ import Link from "next/link";
 import { readdir } from "node:fs/promises";
 import path from "node:path";
 import CarouselGallery from "./components/CarouselGallery";
+import DressCodeButton from "./components/DressCodeButton";
 import GuestMessageForm from "./components/GuestMessageForm";
+import ProductCardCarousel from "./components/ProductCardCarousel";
 import RSVPButton from "./components/RSVPButton";
 
 export default async function Home() {
@@ -17,7 +19,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-[#F8F7F3] font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-center py-10  lg:px-16 bg-[#F8F7F3] dark:bg-black sm:items-start px-6">
+      <main className="flex flex-1 w-full max-w-3xl lg:max-w-300 flex-col items-center justify-center py-10 lg:px-16 bg-[#F8F7F3] dark:bg-black sm:items-start px-6">
         {/* HERO */}
         <div className="hero flex justify-center items-center w-full">
           <Image src="/hero.svg" alt="Hero Image" width={450} height={250} loading="eager" />
@@ -36,17 +38,19 @@ export default async function Home() {
             É um grande prazer convidar você para celebrar o nosso casamento nesta data
           </p>
 
-          <h2 className="uppercase font-cinzel font-bold text-[20px]">
-            17 de outubro de 2026 | Bauru-SP
-          </h2>
+          <div className="sm:flex sm:gap-2">
+            <h2 className="uppercase font-cinzel font-bold text-[20px] text-center">
+              17 de outubro de 2026
+            </h2>
+            <span className="hidden sm:inline"> | </span>
+            <h2 className="uppercase font-cinzel font-bold text-[20px] text-center"> Bauru-SP </h2>
+          </div>
 
           <RSVPButton />
 
           <span className="text-[12px]"> *Até 27 de Setembro</span>
 
-          <button className="font-cinzel text-[12px] cursor-pointer underline">
-            Dress code (trajes)
-          </button>
+          <DressCodeButton />
         </div>
 
         {/* Party Info */}
@@ -80,19 +84,19 @@ export default async function Home() {
         />
 
         {/* Gift List */}
-        <div className="gift-list flex justify-center items-center gap-4 w-full mt-6">
-          <Image
+        <div className="gift-list block w-full mt-6">
+          {/* <Image
             src="/gifts.svg"
             alt="Gifts Icon"
             width={450}
             height={250}
             className="w-1/2 h-auto"
-          />
+          /> */}
 
-          <div className="w-1/2 h-45.25 flex flex-col items-center justify-start gap-4">
+          <div className="w-full flex flex-col items-center justify-start gap-4">
             <h1 className="font-dancing text-[1.70rem] text-center"> Lista de presentes </h1>
 
-            <span> Carrousel presentes</span>
+            <ProductCardCarousel />
           </div>
         </div>
 
@@ -191,9 +195,7 @@ export default async function Home() {
 
           <span className="text-[12px] mt-2"> *Até 27 de Setembro</span>
 
-          <button className="font-cinzel text-[12px] cursor-pointer underline mt-4">
-            Dress code (trajes)
-          </button>
+          <DressCodeButton className="mt-4" />
         </div>
 
         <div className="left-your-msg w-full mt-20">

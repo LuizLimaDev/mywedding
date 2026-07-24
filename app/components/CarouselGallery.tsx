@@ -25,7 +25,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
 
   if (!hasImages) {
     return (
-      <div className="w-full max-w-[90vw] rounded-xl border border-foreground/20 bg-white/60 px-4 py-6 text-center text-sm">
+      <div className="w-full max-w-[90vw] lg:max-w-full rounded-xl border border-foreground/20 bg-white/60 px-4 py-6 text-center text-sm">
         Nenhuma foto encontrada em /public/carouselImgs.
       </div>
     );
@@ -33,7 +33,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
 
   return (
     <>
-      <div className="w-full max-w-[90vw]">
+      <div className="w-full max-w-[90vw] lg:max-w-full">
         <div className="relative">
           <button
             type="button"
