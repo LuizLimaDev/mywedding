@@ -106,18 +106,19 @@ export default async function Home() {
             <div className="container-text">
               <h1 className="font-dancing text-[1.70rem] text-center"> Nossa história </h1>
 
-              <p className="min-w-[35%] max-h-50 overflow-y-auto overflow-x-hidden text-[12px]">
-                {" "}
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni quaerat harum sint
-                quam dolorum necessitatibus deserunt, perferendis dicta exercitationem dolorem hic
-                quas dignissimos sequi eum velit sapiente mollitia vitae! Alias minima veniam esse
-                aliquam quam ab, et provident numquam sunt nobis? Deleniti sunt, et labore aut
-                corrupti provident nostrum distinctio ut ipsum! Magni iste obcaecati ipsa rem
-                perferendis. Molestias provident ad saepe, sint in perferendis illo, laudantium
-                quidem quis dolorum temporibus aperiam quaerat, atque error. Rerum provident tempore
-                asperiores eveniet illum et quos autem, possimus distinctio accusantium? Quas minus
-                architecto, dicta, placeat numquam officia optio, fugiat laudantium ducimus soluta
-                laboriosam!
+              <p className="min-w-[35%] max-h-50 overflow-y-auto overflow-x-hidden text-[12px] text-justify">
+                Nossa história começou de forma inesperada e, pouco a pouco, uma simples conversa se
+                transformou em um amor que mudou nossas vidas.
+              </p>
+              <p className="min-w-[35%] max-h-50 overflow-y-auto overflow-x-hidden text-[12px] mt-2 text-justify">
+                Juntos, descobrimos que os melhores momentos são aqueles vividos lado a lado. Entre
+                sonhos compartilhados, risadas e muito amor, tivemos a certeza de que queríamos
+                escrever nossa história para sempre.
+              </p>
+              <p className="min-w-[35%] max-h-50 overflow-y-auto overflow-x-hidden text-[12px] mt-2 text-justify">
+                Hoje, celebramos o início de um novo capítulo e a realização do nosso maior sonho:
+                construir uma vida juntos. É uma alegria imensa ter vocês conosco para fazer parte
+                deste momento tão especial.
               </p>
             </div>
 
