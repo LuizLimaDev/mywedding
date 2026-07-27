@@ -102,8 +102,8 @@ export default async function Home() {
 
         {/* Our Story */}
         <div className="our-story flex flex-col justify-center items-center gap-4 w-full mt-16">
-          <div className="container-content flex">
-            <div className="container-text">
+          <div className="container-content flex flex-col sm:flex-row">
+            <div className="container-text order-2 sm:order-1">
               <h1 className="font-dancing text-[1.70rem] text-center"> Nossa história </h1>
 
               <p className="min-w-[35%] max-h-50 overflow-y-auto overflow-x-hidden text-[12px] text-justify">
@@ -127,7 +127,7 @@ export default async function Home() {
               alt="Affair Icon"
               width={0}
               height={0}
-              className="w-[60%] h-52.5 self-end "
+              className="w-full sm:w-[60%] h-52.5 self-end mb-4 sm:mb-0"
             />
           </div>
 
