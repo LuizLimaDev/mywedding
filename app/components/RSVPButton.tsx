@@ -20,6 +20,7 @@ const makeEmptyGuest = (): GuestForm => ({
 
 export default function RSVPButton() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasConfirmedInstructions, setHasConfirmedInstructions] = useState(false);
   const [guests, setGuests] = useState<GuestForm[]>([makeEmptyGuest()]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -93,6 +94,7 @@ export default function RSVPButton() {
         className="border border-foreground rounded-full bg-foreground text-white px-4 py-2 mt-4 font-bold text-sm cursor-pointer"
         onClick={() => {
           resetForm();
+          setHasConfirmedInstructions(false);
           setIsOpen(true);
         }}
       >
@@ -113,112 +115,128 @@ export default function RSVPButton() {
               </button>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-6">
-              {guests.map((guest, index) => (
-                <div key={index} className="rounded-xl border border-foreground/30 bg-white p-4">
-                  <h3 className="mb-4 font-cinzel text-sm font-bold uppercase">
-                    Convidado {index + 1}
-                  </h3>
+            {hasConfirmedInstructions ? (
+              <form onSubmit={onSubmit} className="space-y-6">
+                {guests.map((guest, index) => (
+                  <div key={index} className="rounded-xl border border-foreground/30 bg-white p-4">
+                    <h3 className="mb-4 font-cinzel text-sm font-bold uppercase">
+                      Convidado {index + 1}
+                    </h3>
 
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <label className="flex flex-col gap-1">
-                      <span className="text-sm font-semibold">Nome</span>
-                      <input
-                        required
-                        value={guest.fullName}
-                        onChange={(event) => updateGuest(index, "fullName", event.target.value)}
-                        className="rounded-lg border border-foreground/40 px-3 py-2"
-                        placeholder="Nome completo"
-                      />
-                    </label>
-
-                    <label className="flex flex-col gap-1">
-                      <span className="text-sm font-semibold">Telefone com WhatsApp</span>
-                      <input
-                        required
-                        value={guest.phone}
-                        onChange={(event) => updateGuest(index, "phone", event.target.value)}
-                        className="rounded-lg border border-foreground/40 px-3 py-2"
-                        placeholder="(14) 99999-9999"
-                      />
-                    </label>
-
-                    <div className="flex flex-col gap-2">
-                      <span className="text-sm font-semibold">Tipo de convidado</span>
-                      <label className="flex items-center gap-2 text-sm">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <label className="flex flex-col gap-1">
+                        <span className="text-sm font-semibold">Nome</span>
                         <input
-                          type="checkbox"
-                          checked={guest.isAdult}
-                          onChange={() => updateGuest(index, "isAdult", true)}
+                          required
+                          value={guest.fullName}
+                          onChange={(event) => updateGuest(index, "fullName", event.target.value)}
+                          className="rounded-lg border border-foreground/40 px-3 py-2"
+                          placeholder="Nome completo"
                         />
-                        Adulto
                       </label>
-                      <label className="flex items-center gap-2 text-sm">
+
+                      <label className="flex flex-col gap-1">
+                        <span className="text-sm font-semibold">Telefone com WhatsApp</span>
                         <input
-                          type="checkbox"
-                          checked={!guest.isAdult}
-                          onChange={() => updateGuest(index, "isAdult", false)}
+                          required
+                          value={guest.phone}
+                          onChange={(event) => updateGuest(index, "phone", event.target.value)}
+                          className="rounded-lg border border-foreground/40 px-3 py-2"
+                          placeholder="(14) 99999-9999"
                         />
-                        Crianca
+                      </label>
+
+                      <div className="flex flex-col gap-2">
+                        <span className="text-sm font-semibold">Tipo de convidado</span>
+                        <label className="flex items-center gap-2 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={guest.isAdult}
+                            onChange={() => updateGuest(index, "isAdult", true)}
+                          />
+                          Adulto
+                        </label>
+                        <label className="flex items-center gap-2 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={!guest.isAdult}
+                            onChange={() => updateGuest(index, "isAdult", false)}
+                          />
+                          Crianca
+                        </label>
+                      </div>
+
+                      <div className="flex flex-col gap-2">
+                        <span className="text-sm font-semibold">Convidado de</span>
+                        <label className="flex items-center gap-2 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={guest.invitedBy === "GROOM"}
+                            onChange={() => updateGuest(index, "invitedBy", "GROOM")}
+                          />
+                          Noivo
+                        </label>
+                        <label className="flex items-center gap-2 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={guest.invitedBy === "BRIDE"}
+                            onChange={() => updateGuest(index, "invitedBy", "BRIDE")}
+                          />
+                          Noiva
+                        </label>
+                      </div>
+
+                      <label className="flex flex-col gap-1 md:col-span-2">
+                        <span className="text-sm font-semibold">Restricao alimentar</span>
+                        <textarea
+                          value={guest.dietaryRestrictions}
+                          onChange={(event) =>
+                            updateGuest(index, "dietaryRestrictions", event.target.value)
+                          }
+                          className="min-h-22.5 rounded-lg border border-foreground/40 px-3 py-2"
+                          placeholder="Informe se houver"
+                        />
                       </label>
                     </div>
-
-                    <div className="flex flex-col gap-2">
-                      <span className="text-sm font-semibold">Convidado de</span>
-                      <label className="flex items-center gap-2 text-sm">
-                        <input
-                          type="checkbox"
-                          checked={guest.invitedBy === "GROOM"}
-                          onChange={() => updateGuest(index, "invitedBy", "GROOM")}
-                        />
-                        Noivo
-                      </label>
-                      <label className="flex items-center gap-2 text-sm">
-                        <input
-                          type="checkbox"
-                          checked={guest.invitedBy === "BRIDE"}
-                          onChange={() => updateGuest(index, "invitedBy", "BRIDE")}
-                        />
-                        Noiva
-                      </label>
-                    </div>
-
-                    <label className="flex flex-col gap-1 md:col-span-2">
-                      <span className="text-sm font-semibold">Restricao alimentar</span>
-                      <textarea
-                        value={guest.dietaryRestrictions}
-                        onChange={(event) =>
-                          updateGuest(index, "dietaryRestrictions", event.target.value)
-                        }
-                        className="min-h-22.5 rounded-lg border border-foreground/40 px-3 py-2"
-                        placeholder="Informe se houver"
-                      />
-                    </label>
                   </div>
-                </div>
-              ))}
+                ))}
 
-              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setGuests((prev) => [...prev, makeEmptyGuest()])}
+                    className="rounded-full border border-foreground px-4 py-2 text-sm font-semibold cursor-pointer"
+                  >
+                    + Adicionar
+                  </button>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !canSubmit}
+                    className="rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-white disabled:opacity-60 cursor-pointer"
+                  >
+                    {isSubmitting ? "Enviando..." : "Enviar RSVP"}
+                  </button>
+                </div>
+
+                {errorMessage ? <p className="text-sm text-red-700">{errorMessage}</p> : null}
+                {successMessage ? <p className="text-sm text-green-700">{successMessage}</p> : null}
+              </form>
+            ) : (
+              <div className="space-y-6">
+                <p className="text-sm md:text-base">
+                  Informe por favor todas as pessoas que irão ao casamento,{" "}
+                  <strong>incluindo as crianças</strong>.
+                </p>
                 <button
                   type="button"
-                  onClick={() => setGuests((prev) => [...prev, makeEmptyGuest()])}
-                  className="rounded-full border border-foreground px-4 py-2 text-sm font-semibold cursor-pointer"
+                  onClick={() => setHasConfirmedInstructions(true)}
+                  className="rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-white cursor-pointer"
                 >
-                  + Adicionar
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting || !canSubmit}
-                  className="rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-white disabled:opacity-60 cursor-pointer"
-                >
-                  {isSubmitting ? "Enviando..." : "Enviar RSVP"}
+                  Ok
                 </button>
               </div>
-
-              {errorMessage ? <p className="text-sm text-red-700">{errorMessage}</p> : null}
-              {successMessage ? <p className="text-sm text-green-700">{successMessage}</p> : null}
-            </form>
+            )}
           </div>
         </div>
       ) : null}
